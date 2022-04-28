@@ -23,50 +23,48 @@ public class GUI extends JFrame implements ActionListener {
         pack();
         setVisible(true);
     }
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource()==button){
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == button) {
             JFileChooser jFileChoser = new JFileChooser();
             int response = jFileChoser.showOpenDialog(null);
 
-            if(response == jFileChoser.APPROVE_OPTION){
+            if (response == jFileChoser.APPROVE_OPTION) {
                 File file = new File(jFileChoser.getSelectedFile().getAbsolutePath());
-               try {
-                   BufferedReader br = new BufferedReader(new FileReader(file));
-                   while((line = br.readLine())!= null ){
-                       arrayList.add(line);
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader(file));
+                    while ((line = br.readLine()) != null) {
+                        arrayList.add(line);
 
-                   }
-                   System.out.println(arrayList);
-               }catch (IOException exep){
-                   exep.printStackTrace();
-               }
+                    }
+                    System.out.println(arrayList);
+                } catch (IOException exep) {
+                    exep.printStackTrace();
+                }
 
-                //System.out.println(arrayList.get(2));
-
-                HashMap<String, ArrayList<String>> hashMap = new HashMap<String, ArrayList<String>>();
-                for (int i = 1 ; i<arrayList.size(); i++){
-                    String split[] = arrayList.get(i).split(",", 3);
-
+                HashMap<String, ArrayList<String>> employees = new HashMap<String, ArrayList<String>>();
+                for (int i = 1; i < arrayList.size(); i++) {
+                    String split[] = arrayList.get(i).split(",");
+                    String employeeID = split[0];
                     ArrayList<String> dataToBeFilled = new ArrayList<>();
-                    for (int j = 1; j<split.length; j++){
+
+                    for (int j = 1; j < split.length; j++) {
                         dataToBeFilled.add(split[j]);
                     }
 
-                    System.out.println("hashmap print:"+hashMap.get(split[0]));
-                    if(hashMap.containsKey(split[0])){
-                        hashMap.get(split[0]).addAll(dataToBeFilled) ;
-                    }else {
-                    hashMap.put(split[0], dataToBeFilled);}
-                    //System.out.println(arrayList.get(i));
+                    if (employees.containsKey(employeeID)) {
+                        employees.get(employeeID).addAll(dataToBeFilled);
+                    } else {
+                        employees.put(employeeID, dataToBeFilled);
+                    }
                 }
-                System.out.println(hashMap);
-                    //System.out.println(String stuffs =  arrayList.get(1).split(",", 3));
-                    String split[] = arrayList.get(1).split(",", 3);
-                    System.out.println(split[1]);
+                System.out.println(employees);
             }
 
 
         }
-    };
+    }
+
+    ;
 
 }
