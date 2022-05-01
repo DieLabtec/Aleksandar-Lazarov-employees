@@ -63,16 +63,20 @@ public class GUI extends JFrame implements ActionListener {
                 }
 
                 HashMap<String, ArrayList<String>> employees = new HashMap<String, ArrayList<String>>();
+                ArrayList<String> maxTimeWorkedTogether = new ArrayList<>();
+                maxTimeWorkedTogether.add("0");
+                maxTimeWorkedTogether.add("0");
+                maxTimeWorkedTogether.add("0");
+                maxTimeWorkedTogether.add("0");
                 HelperFunctions.turnInformationFromArrayListToHashMap(employees, arrayList);
 
                 Set<String> employeeNumbers = employees.keySet();
                 Iterator<String> iterator = assignmentMap.keySet().iterator();
-//                String next = iterator.next();
-//                String second = iterator.next();
+
 
                 while(iterator.hasNext()){
                     ArrayList<Assignment> currentValue = assignmentMap.get(iterator.next());
-                    ArrayList<String> maxTimeWorkedTogether = new ArrayList<>();
+
                     if(currentValue.size()>1){
                         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
                         Date firstForStartDate = new Date();
@@ -98,25 +102,32 @@ public class GUI extends JFrame implements ActionListener {
                                 }
                                 if(firstForStartDate.before(secondForStartDate) && firstForEndDate.after(secondForEndDate)){
                                    holdDateForCompare = secondForStartDate.getTime() - secondForEndDate.getTime();
+
                                 }
                                 if(secondForStartDate.before(firstForStartDate) && secondForEndDate.after(firstForEndDate)){
-                                   holdDateForCompare = firstForEndDate.getTime() - firstForEndDate.getTime();
+                                   holdDateForCompare = firstForStartDate.getTime() - firstForEndDate.getTime();
                                 }
                                 if(secondForStartDate.equals(firstForStartDate) && secondForEndDate.equals(firstForEndDate)){
-                                   holdDateForCompare = firstForEndDate.getTime() - firstForEndDate.getTime();
+                                   holdDateForCompare = firstForStartDate.getTime() - firstForEndDate.getTime();
                                 }
                                 holdDateForCompare =Math.min((firstForStartDate.getTime()-firstForEndDate.getTime()),(secondForStartDate.getTime()-secondForEndDate.getTime()));
-                                if(holdDateForCompare > Long.parseLong(maxTimeWorkedTogether.get(2))){
+                                System.out.println("Hold"+" "+ holdDateForCompare);
+                                if(holdDateForCompare < Long.parseLong(maxTimeWorkedTogether.get(2))){
                                     ArrayList<String> newBiggestValues = new ArrayList<>();
                                     newBiggestValues.add(currentValue.get(firstFor).getEmployeeID());
                                     newBiggestValues.add(currentValue.get(secondFor).getEmployeeID());
                                     newBiggestValues.add(currentValue.get(secondFor).getProjectID());
-                                    newBiggestValues.add(Long.toString(holdDateForCompare));
-
+                                    Date date = new Date(holdDateForCompare);
+                                    newBiggestValues.add(format.format(date));
+                                    maxTimeWorkedTogether = newBiggestValues;
 
                                 }
+
                             }
+
                         }
+
+
 
 //                        System.out.println(date);
 //                        System.out.println(date2);
@@ -128,7 +139,7 @@ public class GUI extends JFrame implements ActionListener {
 
 //                    iterator.next();
                 }
-
+                System.out.println("MaxTimeWOrked"+ maxTimeWorkedTogether);
                 System.out.println("assignment map" + assignmentMap.keySet());
 //                System.out.println(assignmentMap.get(second));
                 System.out.println("correct print"+ employees.get("143"));
