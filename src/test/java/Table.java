@@ -5,19 +5,18 @@ public class Table {
     JFrame f;
     JTable j;
 
-    Table(ArrayList<String> dataForTable)
-    {
+    Table(ArrayList<String> dataForTable) {
         f = new JFrame();
 
         f.setTitle("JTable Example");
 
         String[][] data = {
-                { dataForTable.get(0), dataForTable.get(1), dataForTable.get(2), dataForTable.get(3) },
+                {dataForTable.get(0), dataForTable.get(1), dataForTable.get(2), dataForTable.get(3)},
 
         };
 
 
-        String[] columnNames = { "EmployeeID1", "EmployeeID2", "ProjectID", "DaysWorkedTogether" };
+        String[] columnNames = {"EmployeeID1", "EmployeeID2", "ProjectID", "DaysWorkedTogether"};
 
         j = new JTable(data, columnNames);
         j.setBounds(30, 40, 200, 300);

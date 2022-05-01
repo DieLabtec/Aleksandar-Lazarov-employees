@@ -8,13 +8,13 @@ public class HelperFunctions {
 
         }
         String dateFormat = "";
-        if(dateFormatType == "monthsfirst") {
+        if (dateFormatType == "monthsfirst") {
             dateFormat = "MM/dd/yyyy";
         }
-        if(dateFormatType == "daysfirst"){
+        if (dateFormatType == "daysfirst") {
             dateFormat = "dd/MM/yyyy";
         }
-        if(dateFormatType == "yearfirst"){
+        if (dateFormatType == "yearfirst") {
             dateFormat = "YYY/MM/DD";
         }
         HashMap<String, ArrayList<String>> employees = new HashMap<String, ArrayList<String>>();
@@ -38,7 +38,6 @@ public class HelperFunctions {
                 Date secondForEndDate = new Date();
 
                 long holdDateForCompare;
-
 
                 for (int firstFor = 0; firstFor < currentValue.size(); firstFor++) {
                     for (int secondFor = firstFor + 1; secondFor < currentValue.size(); secondFor++) {
@@ -75,11 +74,10 @@ public class HelperFunctions {
 
                         }
                         System.out.println("this is what you need" + Math.abs((Float.parseFloat(maxTimeWorkedTogether.get(3)) / (1000 * 60 * 60 * 24))));
-                        maxTimeWorkedTogether.set(3,Float.toString(Math.abs((Float.parseFloat(maxTimeWorkedTogether.get(3)) / (1000 * 60 * 60 * 24)))));
+                        maxTimeWorkedTogether.set(3, Float.toString(Math.abs((Float.parseFloat(maxTimeWorkedTogether.get(3)) / (1000 * 60 * 60 * 24)))));
                     }
 
                 }
-
 
             }
 
