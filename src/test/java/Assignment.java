@@ -2,6 +2,23 @@ public class Assignment {
     private String EmployeeID;
     private String ProjectID;
     private String StartDate;
+
+    public String getEmployeeID() {
+        return EmployeeID;
+    }
+
+    public String getProjectID() {
+        return ProjectID;
+    }
+
+    public String getStartDate() {
+        return StartDate;
+    }
+
+    public String getEndDate() {
+        return EndDate;
+    }
+
     private String EndDate;
 
 
@@ -21,4 +38,5 @@ public class Assignment {
                 ", EndDate='" + EndDate + '\'' +
                 '}';
     }
+
 }
